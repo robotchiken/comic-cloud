@@ -8,13 +8,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.takuba.bean.ComicExchangeBean;
-import com.takuba.service.CurrencyExhangeServiceProxy;
+import com.takuba.service.ComicExhangeServiceProxy;
 
 @RestController
 public class ComicSpringFeignController {
 	private static Logger log = LoggerFactory.getLogger(ComicSpringFeignController.class);
 	@Autowired
-	CurrencyExhangeServiceProxy proxy;
+	ComicExhangeServiceProxy proxy;
 	
 	@GetMapping("comic-feign/titulo/{titulo}")
 	private ComicExchangeBean obtenerTituloComic(@PathVariable String titulo){
