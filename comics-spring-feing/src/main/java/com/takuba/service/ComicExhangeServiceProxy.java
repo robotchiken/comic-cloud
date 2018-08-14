@@ -25,4 +25,10 @@ public interface ComicExhangeServiceProxy {
 	@GetMapping("/comics-spring-boot/comic/calendario/{idusuario}")
 	public List<CalendarioExchangeBean> buscarCalendarioUsuario(@PathVariable("idusuario") Integer idusuario);
 	
+	@GetMapping("/comics-spring-boot/comic/info/{id}")
+	public ComicExchangeBean buscarComicPorId(@PathVariable("id")Integer id);
+	
+	@GetMapping("/comics-spring-boot/comic/library/{userid}")
+	public List<ComicExchangeBean> buscarLibreriaUsuario(@PathVariable("userid")Integer userid);
+	
 }

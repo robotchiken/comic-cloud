@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Spring Boot Thymeleaf Hello World Example</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<link rel="stylesheet" th:href="@{/css/main.css}"
+	href="../../css/main.css" />
+<style type="text/css">
+th.titulo{
+	color:black;
+	background-color: gray;
+	text-align: center;
+}
+th.subtitulo{
+	background-color: #20c3ff;
+	text-align: center;	
+}
+tr.odd{
+	background-color: #b8d9d0;
+}
+</style>
+</head>
+<body>
+	<div class="container">
+
+		<div class="starter-template">
+			<h1>Spring Boot Web Thymeleaf Example</h1>
+			<h2>
+				<span th:text="'Message: ' + ${message}"></span>
+			</h2>
+			<form action="#" th:action="@{/infoUsuario}" th:object="${formBean}" method="post">
+			 <table border="1">
+		        <tr>
+		            <td>N&uacute;mero de Usuario</td>
+		            <td><input type="number" th:field="*{idUsuario}" /></td>
+		        </tr>
+		        <tr>
+            		<td><input type="submit" value="Submit" /></td>
+        		</tr>
+        	</table>
+			</form>
+			<table border="1" class="Ftable">
+				<tr>
+					<th colspan="2" scope="colgroup" class="titulo">Calendario</th>
+				</tr>
+				<tr>
+					<th class="subtitulo">Titulo</th>
+					<th class="subtitulo">Fecha publicaci&oacute;n</th>
+				</tr>
+				<tr th:each = "cal,iterStat : ${calendarios}" th:class="${iterStat.odd}? 'odd'">
+					<td th:utext="${cal.comic.titulo}"></td>
+					<td th:utext="${#dates.format(cal.fechaPublicar, 'dd/MM/yyyy')}" style="text-align: center;"></td>
+				</tr>			
+				<tr>
+					<th colspan="2" scope="colgroup" class="titulo">Libreria</th>
+				</tr>
+				<tr>
+					<th class="subtitulo">Titulo</th>
+					<th class="subtitulo">Precio</th>
+				</tr>
+				<tr th:each ="lib,iterStat :${libreria}" th:class="${iterStat.odd}? 'odd'">
+					<td th:utext="${lib.titulo}"></td>
+					<td th:utext="${lib.precio}" style="text-align: center;"></td>
+				</tr>
+			</table>
+		</div>
+
+	</div>
+</body>
+</html>
