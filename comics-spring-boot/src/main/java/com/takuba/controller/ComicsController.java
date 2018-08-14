@@ -69,6 +69,10 @@ public class ComicsController {
 		}
 		return resultado;
 	}
+	@GetMapping("/comic/info/{id}")
+	public Comic buscarComicId(@PathVariable Integer id){
+		return comicRepository.findById(id).orElseThrow(()-> new ComicNotFoundException("No existe el Comic"));
+	}
 	@GetMapping("/comic/editorial/{editorial}")
 	public List<Comic>buscarComicPorEditorial(@PathVariable String editorial){
 		Editorial ed = editorialRepository.findByNombre(editorial);
