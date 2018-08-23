@@ -18,7 +18,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.takuba.bean.BiblioDto;
 import com.takuba.bean.Biblioteca;
+import com.takuba.bean.Event;
+import com.takuba.bean.EventSearch;
+import com.takuba.bean.FormBean;
 import com.takuba.exception.BibliotecaNotFoundException;
 import com.takuba.exception.CalendarioNotFoundException;
 import com.takuba.exception.ComicNotFoundException;
@@ -190,4 +194,30 @@ public class ComicsController {
 		URI location  = ServletUriComponentsBuilder.fromCurrentRequest().path("/{userid}").buildAndExpand(calendario.getId().getIdUsuario()).toUri();
 		return ResponseEntity.created(location).build();
 	}
+	
+	@GetMapping("/comics/biblio/calendario/{idusuario}")
+	public List<BiblioDto> buscarBibliotecaCalendario(@PathVariable Integer idusuario){
+		return todoRepository.buscarBibliotecaCalendario(idusuario);
+	}
+	
+	@PostMapping("/comics/calendario/buscar/")
+	public List<Event> buscarCalendarios(@RequestBody EventSearch eventSearch){
+		return todoRepository.buscarComicsCalendario(eventSearch.getUserid(), eventSearch.getStart(), eventSearch.getEnd());
+	}
+	@PostMapping("/comics/calendario/actualizar/")
+	public Integer actualizarCalendario(@RequestBody FormBean formBean){
+		return todoRepository.actualizarCalendario(formBean);
+	}
+	
+	@GetMapping("/comics/fuera-calendario/{idusuario}")
+	public List<Comic> buscarComicsFueraCalendario(@PathVariable Integer idusuario){
+		return comicRepository.findComicsNotInCalendar(idusuario);
+	}
+	
+	@PostMapping("/comics/calendario/borrar/")
+	public void borrarComicCalendario(@RequestBody FormBean formBean){
+		Calendario tmp = calendarioRepository.buscarEventoUsuario(formBean.getIdComic(), formBean.getIdUsuario());
+		calendarioRepository.delete(tmp);
+	}
+	
 }

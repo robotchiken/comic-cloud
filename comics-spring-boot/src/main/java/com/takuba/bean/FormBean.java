@@ -1,5 +1,7 @@
 package com.takuba.bean;
 
+import java.util.Date;
+
 public class FormBean {
 	private Integer idUsuario;
 	private String fecha;
