@@ -47,4 +47,10 @@ public interface ComicExhangeServiceProxy {
 	
 	@PostMapping("/comics-spring-boot/comics/calendario/borrar/")
 	public void borrarComicCalendario(@RequestBody FormBean formBean);
+	
+	@PostMapping("/comics-spring-boot/comic/titulo/{titulo}")
+	public ComicExchangeBean buscarComicTitulo(@PathVariable("titulo") String titulo);
+	
+	@PostMapping("/comics-spring-boot/comic/")
+	public void agregarComicCalendario(@RequestBody FormBean comic);
 }

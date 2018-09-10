@@ -86,5 +86,16 @@ public class TodoRepositoryImpl implements CustomTodoRepository {
 		return jdbcTemplate.update(sql,paramMap);
 		
 	}
+
+	public void agregarComicCalendario(FormBean comic) {
+		String sql ="INSERT INTO CALENDARIO (ID_COMIC,ID_USUARIO,FECHA_PUBLICAR,NUMERO) VALUES (:idComic,:idUsuario,:fecha,:numero)";
+		Map<String,Object>paramMap = new HashMap<>();
+		paramMap.put("idComic", comic.getIdComic());
+		paramMap.put("idUsuario",comic.getIdUsuario());
+		paramMap.put("fecha",comic.getFecha());
+		paramMap.put("numero",comic.getNumero());
+		jdbcTemplate.update(sql,paramMap);
+		
+	}
 	
 }

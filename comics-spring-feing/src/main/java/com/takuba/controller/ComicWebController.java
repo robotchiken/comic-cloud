@@ -95,4 +95,11 @@ public class ComicWebController {
 		result.setMensaje("Comics comprados");
 		return ResponseEntity.ok(result);
 	}
+	@RequestMapping(value="/add-calendar", method = RequestMethod.POST)
+	public ResponseEntity<?> agregarComicCalendario(@ModelAttribute FormBean comic){
+		AjaxResponseBody result = new AjaxResponseBody();
+		proxy.agregarComicCalendario(comic);
+		result.setMensaje("Comics agregado al calendario");
+		return ResponseEntity.ok(result);
+	}
 }

@@ -4,6 +4,8 @@ public class FormBean {
 	private Integer idUsuario;
 	private String fecha;
 	private Integer idComic;
+	private String titulo;
+	private Integer numero;
 	public FormBean(){
 		
 	}
@@ -30,5 +32,21 @@ public class FormBean {
 
 	public void setIdComic(Integer idComic) {
 		this.idComic = idComic;
+	}
+
+	public String getTitulo() {
+		return titulo;
+	}
+
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
+	}
+
+	public Integer getNumero() {
+		return numero;
+	}
+
+	public void setNumero(Integer numero) {
+		this.numero = numero;
 	}
 }

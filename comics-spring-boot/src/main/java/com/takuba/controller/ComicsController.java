@@ -114,36 +114,12 @@ public class ComicsController {
 		return usu;
 	}
 	@PostMapping("/comic/")
-	public ResponseEntity<Object> agregarCalendarioUsuario(@RequestBody Usuario usuario){
-		log.info(usuario.toString());
-		
-		List<Calendario> lstCalendarios = usuario.getCalendarios();
-		lstCalendarios.forEach(new Consumer<Calendario>() {
-
-			@Override
-			public void accept(Calendario cal) {
-				Optional<Calendario> calOptional = calendarioRepository.findById(cal.getId());
-				if(!calOptional.isPresent()){
-					calendarioRepository.save(cal);
-				}else{
-					log.info("Existe el elemento {}", cal);
-				}
-				
-			}
-		});
-		
-		usuario.getComics().forEach(new Consumer<Comic>() {
-
-			@Override
-			public void accept(Comic com) {
-				if(!comicRepository.findById(com.getIdComic()).isPresent()){
-					comicRepository.save(com);
-				}
-				
-			}
-		});
-
-		URI location  = ServletUriComponentsBuilder.fromCurrentRequest().path("/{username}").buildAndExpand(usuario.getUsuario()).toUri();
+	public ResponseEntity<Object> agregarCalendarioUsuario(@RequestBody FormBean comic){
+		log.info(comic.toString());
+		Comic tmp = comicRepository.findByTitulo(comic.getTitulo());
+		comic.setIdComic(tmp.getIdComic());
+		todoRepository.agregarComicCalendario(comic);
+		URI location  = ServletUriComponentsBuilder.fromCurrentRequest().path("/{username}").buildAndExpand(comic.getIdUsuario()).toUri();
 		return ResponseEntity.created(location).build();
 	}
 	

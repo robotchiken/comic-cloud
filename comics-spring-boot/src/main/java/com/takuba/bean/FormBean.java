@@ -1,11 +1,11 @@
 package com.takuba.bean;
 
-import java.util.Date;
-
 public class FormBean {
 	private Integer idUsuario;
 	private String fecha;
 	private Integer idComic;
+	private Integer numero;
+	private String titulo;
 	public FormBean(){
 		
 	}
@@ -32,5 +32,21 @@ public class FormBean {
 
 	public void setIdComic(Integer idComic) {
 		this.idComic = idComic;
+	}
+
+	public Integer getNumero() {
+		return numero;
+	}
+
+	public void setNumero(Integer numero) {
+		this.numero = numero;
+	}
+
+	public String getTitulo() {
+		return titulo;
+	}
+
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
 	}
 }
